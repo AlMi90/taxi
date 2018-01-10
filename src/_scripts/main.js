@@ -6,6 +6,7 @@
 ymaps.ready(init);
 
 function init() {
+
 	// Формирование формы подтверждения
 	var	$submit = $('.submit'),
 		$ver = $('.ver'),
@@ -20,8 +21,11 @@ function init() {
 		temp_full_address;
 
 	$($submit).on('click', function() {
-		varFormConfirm();
-	})
+		if ($(this).hasClass('active')) {
+			varFormConfirm();
+		}
+	});
+
 	function varFormConfirm() {
 		$('.ver__whence').children('.var__value').html(getTempAdress( $whence ));
 		$('.ver__where').children('.var__value').html(getTempAdress( $where ));
