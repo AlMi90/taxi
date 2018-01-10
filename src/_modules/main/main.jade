@@ -2,26 +2,26 @@ form#form.form(action="#")
 	.form__inputs.inputs
 		.inputs__container
 			.inputs__address.address
-				.address__address
+				.address__address#whence
 					i.address__icon.fa.fa-map-marker(aria-hidden="true")
-					input.address__input.address__input-address#whence(placeholder="Откуда" autocomplete="off")
+					input.address__input.address__input-address(placeholder="Откуда" autocomplete="off")
 					input.address__input.address__input-house.address__input-other(placeholder="Дом" autocomplete="off")
 					input.address__input.address__input-front.address__input-other(placeholder="Пар." autocomplete="off")
 				ul.address__hints.hints
 			.inputs__address.address
-				.address__address
+				.address__address#where
 					i.address__icon.fa.fa-map-marker(aria-hidden="true")
-					input.address__input.address__input-address#where(placeholder="Куда" autocomplete="off")
+					input.address__input.address__input-address(placeholder="Куда" autocomplete="off")
 					input.address__input.address__input-house.address__input-other(placeholder="Дом" autocomplete="off")
 					input.address__input.address__input-front.address__input-other(placeholder="Пар." autocomplete="off")
 				ul.address__hints.hints
 			.inputs__options.options
 				.options__main.car.person
-					.options__mainPart.car__choice.car__choice-sedan.active(data-name = "Седан")
+					.options__mainPart.car__choice.car__choice-sedan.active(data-name="седан")
 						img.car__img(src='images/sedan.png')
 						.car__name Седан
 						.car__price 1.5 руб
-					.options__mainPart.car__choice.car__choice-minivan(data-name = "Минивен")
+					.options__mainPart.car__choice.car__choice-minivan(data-name="минивен")
 						img.car__img(src='images/minivan.png')
 						.car__name Минивен
 						.car__price 2 руб
@@ -31,31 +31,31 @@ form#form.form(action="#")
 				.options__more.more
 					.more__url Комментарий и доп. опции
 					.more__menu
-						.more__option
+						.more__option(value = 'Детское кресло')
 							img.more__img.more__part(src='images/additional_1.svg')
 							p.more__name.more__part Детское кресло
 							p.more__price.more__part Бесплатно
-						.more__option
+						.more__option(value = 'Квитанция об оплате')
 							img.more__img.more__part(src='images/additional_12.svg')
 							p.more__name.more__part Квитанция об оплате
 							p.more__price.more__part Бесплатно
-						.more__option
+						.more__option(value = 'Молчаливый водитель')
 							img.more__img.more__part(src='images/additional_17.svg')
 							p.more__name.more__part Молчаливый водитель
 							p.more__price.more__part Бесплатно
-						.more__option
+						.more__option(value = 'Wi-Fi')
 							img.more__img.more__part(src='images/additional_14.svg')
 							p.more__name.more__part Wi-Fi
 							p.more__price.more__part Бесплатно
-						.more__option(data-price='1')
+						.more__option(value = 'Поездка с животными' data-price='1')
 							img.more__img.more__part(src='images/additional_3.svg')
 							p.more__name.more__part Поездка с животными
 							p.more__price.more__part +1 pуб
-						.more__option
+						.more__option(value = 'Зарядка телефона')
 							img.more__img.more__part(src='images/additional_7.svg')
 							p.more__name.more__part Зарядка телефона
 							p.more__price.more__part Бесплатно
-						.more__option
+						.more__option(value = 'Курьерская доставка')
 							img.more__img.more__part(src='images/additional_13.svg')
 							p.more__name.more__part Курьерская доставка
 							p.more__price.more__part Бесплатно
@@ -63,23 +63,26 @@ form#form.form(action="#")
 			button.inputs__submit.submit(type="submit" disabled = 'true') Вызвать такси
 				.trip
 					.trip__price
-			.form__ver.ver
-				.ver__whence
-					.var__name Откуда:
-					.var__value ул. Солянникова, дом 4, парадная 4.ул. Солянникова, дом 4, парадная 4.
-				.ver__where
-					.var__name Куда:
-					.var__value ул. Солянникова, дом 4, парадная 4.
-				.ver__phone
-					.var__name Телефон для связи:
-					.var__value +375(25)654-06-94.
-				.var__car
-					.var__name Автомобиль:
-					.var__value седан.
-				.ver__options
-				.var__price
-					.var__name Цена:
-					.var__value ~ 4 руб.
-				
+	.form__overlay
+	ul.form__ver.ver
+		li.ver__head  Проверьте и подтвердите заказ
+		li.ver__whence.ver__part.ver__part-address
+			.var__name Откуда:
+			.var__value 
+		li.ver__where.ver__part.ver__part-address
+			.var__name Куда:
+			.var__value 
+		li.ver__phone.ver__part
+			.var__name Телефон для связи:
+			.var__value 
+		li.var__car.ver__part
+			.var__name Автомобиль:
+			.var__value 
+		li.ver__options.ver__part
+		li.var__price.ver__part
+			.var__name Цена:
+			.var__value
+		li.ver__button.ver__button-confirm Подтверждаю
+		li.ver__button.ver__button-cancel Отменить
 
 	.form__map.map#YMapsID

@@ -6,6 +6,60 @@
 ymaps.ready(init);
 
 function init() {
+	// Формирование формы подтверждения
+	var	$ver = $('.ver'),
+		$overlay = $('.form__overlay'),
+		$whence = $('#whence'),
+		$where = $('#where'),
+		$button_confirm = $('.ver__button-confirm'),
+		$button_cancel = $('.ver__button-cancel'),
+		temp_address_val,
+		temp_house_val,
+		temp_front_val,
+		temp_full_address;
+
+	function varFormConfirm() {
+		$('.ver__whence').children('.var__value').html(getTempAdress( $whence ));
+		$('.ver__where').children('.var__value').html(getTempAdress( $where ));
+		$('.ver__phone').children('.var__value').html($('#phone').val());
+		$('.var__car').children('.var__value').html($('.car__choice.active').attr('data-name'));
+		$('.var__price').children('.var__value').html('~ ' + priceTrip + ' руб.');
+		$($overlay).addClass('active');
+		$($ver).addClass('active');
+
+		function getTempAdress( obj ) {
+			temp_full_address = "";
+			temp_address_val = $( obj ).children('.address__input-address').val().trim();
+			temp_house_val = $( obj ).children('.address__input-house').val().trim();
+			temp_front_val = $( obj ).children('.address__input-front').val().trim();
+			temp_full_address = temp_address_val;
+			if (temp_house_val.length != 0) {
+				temp_full_address += ', дом ' + temp_house_val;
+				if (temp_front_val.length != 0) {
+					temp_full_address += ', парадная ' + temp_front_val;
+				}
+			}
+			return temp_full_address;
+		}
+	}
+	function hideOverlay( obj ) {
+		$( obj ).on('click', function() {
+			$($overlay).removeClass('active');
+			$($ver).removeClass('active');
+		})
+	}
+
+	hideOverlay( $button_cancel );
+	hideOverlay( $overlay );
+
+
+
+
+	// Конец - Формирование формы подтверждения
+
+
+
+
 	// Формирование цены
 		// Цена за 1 км
 	var	price_for_km = 0.5,
@@ -15,18 +69,19 @@ function init() {
 		lengthRoute = 0,
 		// Время в пути
 		timeRoute = 0;
+	// Конец - Формирование цены
 
 
 	// Телефон
 
 		// Поле ввода телефонного номера
-	var	$inputForMask = $('#phone'),
+	var	$inputForMask = $('.person__phone'),
 		// Валидность введенного номера
 		phoveValid = false;
 
 	// Применение маски к полю ввода телефона
 	$($inputForMask).inputmask({
-		mask : "+375(99)999-99-99",
+		mask : "+375(99) 999-99-99",
 		// При полном вводе
 		oncomplete : function() {
 			phoveValid = true;
@@ -83,7 +138,7 @@ function init() {
 		// Элементы выбора автомобиля
 		$carChoice = $('.car__choice'),
 		// Переменная выбранного автомобиля
-		autoChoice = 'Седан',
+		autoChoice = 'седан',
 		// Кнопка показа меню комментирования и выбора доп. опций
 		$moreButton = $('.more__url'),
 		// Меню комментариев и тд.
@@ -106,11 +161,11 @@ function init() {
 			autoChoice = $(this).attr('data-name')
 
 			// От того какая машина выбрана формируется цена посадки
-			if ( autoChoice == 'Седан' ) {
+			if ( autoChoice == 'седан' ) {
 				price_car -= .5;
 
 			}
-			else if ( autoChoice == 'Минивен' ) {
+			else if ( autoChoice == 'минивен' ) {
 				price_car += .5;
 			}
 		}
@@ -357,8 +412,8 @@ function init() {
 	// При нажатии на сабмит проихойдет построение маршрута(если он есть),
 	// с помощью функции showRoute(), в которую передается массив где:
 	// [0] - точка отправления, [>0] - точк(а/и) направления.
-	form.onsubmit = function () {
+	form.onsubmit = function ( e ) {
 		e.preventDefault()
-		routeingInMap()
+		varFormConfirm()
 	};
 }

@@ -200,8 +200,100 @@
 	&__comment
 		margin-top: 10px
 		resize: none
-.ver
+
+.form__overlay
 	display: none
+	position: absolute
+	top: 0
+	left: 0
+	width: 100vw
+	height: 100vh
+	background-color: rgba(gray, .8)
+	z-index: 900
+	&.active
+		display: block
+
+
+.ver
+	z-index: 1000
+	position: absolute
+	top: calc(50% - 250px)
+	left: calc(50% - 250px)
+	list-style-type: none
+	padding: 0
+	margin: 0
+	background-color: #FFF
+	flex-direction: column
+	width: 500px
+	overflow: hidden
+	display: none
+	&.active
+		display: flex
+	&__head
+		font-size: 24px
+		line-height: 55px
+		color: #1A1A1A
+		text-align: center
+		background: rgba(255, 214, 11, .8)
+	&__part
+		font-size: 18px
+		line-height: 18px
+		display: flex
+		justify-content: space-between
+		padding: 10px 10px
+		border-bottom: 1px solid rgba(255, 214, 11, 1)
+	&__part-address
+		flex-direction: column
+		align-items: center
+		text-align: center
+	&__options
+		display: none
+	&__button
+		font-size: 18px
+		margin: 0 auto
+		width: 300px
+		height: 50px
+		line-height: 50px
+		text-align: center
+		margin-bottom: 15px
+		cursor: pointer
+	&__button-confirm
+		margin-top: 15px
+		background-color: rgba(255, 214, 11, .8)
+		&:hover
+			background-color: rgba(255, 214, 11, 1)
+	&__button-cancel
+		background-color: rgba(red, .7)
+		&:hover
+			background-color: rgba(red, 1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width:400px)
 	.inputs
@@ -215,6 +307,11 @@
 			margin-top: 20px
 	.options__mainPart
 		margin: 7.5px
+	.ver
+		top: 0
+		left: 0
+		width: 100vw
+		height: 100vh
 
 @media screen and (max-width:350px)
 	.car__choice
