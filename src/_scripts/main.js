@@ -7,7 +7,8 @@ ymaps.ready(init);
 
 function init() {
 	// Формирование формы подтверждения
-	var	$ver = $('.ver'),
+	var	$submit = $('.submit'),
+		$ver = $('.ver'),
 		$overlay = $('.form__overlay'),
 		$whence = $('#whence'),
 		$where = $('#where'),
@@ -18,6 +19,9 @@ function init() {
 		temp_front_val,
 		temp_full_address;
 
+	$($submit).on('click', function() {
+		varFormConfirm();
+	})
 	function varFormConfirm() {
 		$('.ver__whence').children('.var__value').html(getTempAdress( $whence ));
 		$('.ver__where').children('.var__value').html(getTempAdress( $where ));
@@ -119,7 +123,7 @@ function init() {
 		// Массив одной поисковой подсказки inputValidation()
 		suggestViewArr = [],
 		// Кнопка отправки формы (Заказ такси)
-		submit = document.querySelector('.inputs__submit'),
+		$submit = $('.submit'),
 		// Переменная формы
 		form				= document.querySelector('#form'),
 		// Данные маршрута
@@ -297,13 +301,11 @@ function init() {
 	}
 	// Активация кнопки отправки формы (Заказать такси)
 	function submitActive() {
-		submit.disabled = false;
-		submit.classList.add('active');
+		$($submit).addClass('active')
 	}
 
 	function submitUnActive() {
-		submit.disabled = true;
-		submit.classList.remove('active');
+		$($submit).removeClass('active')
 	}
 
 	// Перевод строки в объект
@@ -407,13 +409,5 @@ function init() {
 			tripData(length, time);
 			saveDataRoute(length, time);
 		});
-	};
-
-	// При нажатии на сабмит проихойдет построение маршрута(если он есть),
-	// с помощью функции showRoute(), в которую передается массив где:
-	// [0] - точка отправления, [>0] - точк(а/и) направления.
-	form.onsubmit = function ( e ) {
-		e.preventDefault()
-		varFormConfirm()
 	};
 }
