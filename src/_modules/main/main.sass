@@ -1,0 +1,225 @@
+
+.form
+	position: relative
+	width: 100vw
+	height: 100vh
+	overflow: hidden
+	&__map
+		position: absolute
+		top: 0
+		left: 0
+		width: 100vw
+		height: 100vh
+
+.inputs
+	position: absolute
+	bottom: 0
+	left: 0
+	z-index: 50
+	width: 100%
+	margin: 0 auto
+	padding: 20px
+	background-color: rgba(white, .9)
+	&__container
+		display: flex
+		flex-direction: column
+		align-items: center
+
+.address
+	position: relative
+	display: flex
+	flex-direction: column
+	margin: 10px 0
+	background-color: white
+	width: 100%
+	&__address
+		width: 100%
+		display: flex
+		align-items: center
+	&__point
+		margin: 0
+		width: 40px
+		text-align: center
+		font-family: 'Roboto Mono', monospace;
+		font-size: 30px
+		font-weight: 700
+		color: orange
+	&__input
+		box-sizing: border-box
+		width: calc(78% - 20px)
+		height: 30px
+		padding: 5px
+		border: 1px solid rgba(gray, .5)
+		&:hover
+			outline: 0
+			outline-offset: 0
+		&:active, &:focus
+			border-bottom: 2px solid rgba(255, 214, 11, 1)
+			outline: 0
+			outline-offset: 0
+	&__input-other
+		width: 22%
+		border-left: none
+	&__icon
+		margin-right: 20px
+		text-align: center
+		font-size: 25px
+		line-height: 30px
+		color: gray
+		&:hover
+			color: black
+
+.hints
+	display: none
+	z-index: 100
+	position: absolute
+	top: 100%
+	right: 0px
+	width: calc(100% - 35px)
+	margin: 0
+	padding: 0
+	background-color: white
+	border-left: 1px solid rgba(gray, .5)
+	border-right: 1px solid rgba(gray, .5)
+	border-bottom: 1px solid rgba(gray, .5)
+	&__hint
+		padding: 0
+		list-style-type: none
+		margin: 0
+		padding: 2px 10px
+		cursor: pointer
+		&:hover
+			background-color: rgba(255, 214, 11, .5)
+	&__hint-desc
+		font-size: 12px
+		color: rgba(gray, .7)
+
+.submit
+	border: none
+	background-color: rgba(255, 214, 11, .7)
+	width: 100vw
+	height: 50px
+	font-size: 18px
+	cursor: pointer
+	.active
+		background-color: rgba(255, 214, 11, 1)
+
+.trip
+	&__price
+		font-size: 14px
+		font-weight: 300
+		color: #696969
+
+.options__main
+	display: flex
+	align-items: flex-end
+	justify-content: center
+	&Part
+		margin: 10px
+
+.car
+	&__choice
+		width: 80px
+		opacity: 0.2
+		text-align: center
+		cursor: pointer
+		&.active
+			opacity: 1
+		&:hover
+			opacity: 1
+	&__img
+		width: 40%
+	&__name
+		font-weight: 400
+	&__price
+		font-weight: 700
+
+.person
+	&__title
+		margin: 0 0 5px
+	&__phone
+		box-sizing: border-box
+		font-size: 15px
+		width: 150px
+		height: 30px
+		line-height: 30px
+		padding: 5px
+		border: 1px solid rgba(gray, .5)
+		&:hover
+			outline: 0
+			outline-offset: 0
+		&:active, &:focus
+			border-bottom: 2px solid rgba(255, 214, 11, 1)
+			outline: 0
+			outline-offset: 0
+.more
+	position: relative
+	width: 400px
+	display: flex
+	flex-direction: column
+	align-items: center
+	&__url
+		margin: 10px
+		color: #1a1a1a
+		width: 220px
+		text-align: center
+		font-weight: 400
+		border-bottom: 2px solid rgba(255, 214, 11, 1)
+		cursor: pointer
+		user-select: none
+	&__menu
+		z-index: 150
+		display: none
+		flex-direction: column
+		align-items: flex-ctart
+		position: absolute
+		bottom: 100%
+		width: 400px
+		cursor: default
+		background-color: #FFF
+		padding: 10px
+		&.active
+			display: flex
+	&__option
+		display: flex
+		align-items: center
+		justify-content: flex-start
+		width: 100%
+		cursor: pointer
+		margin-bottom: 1px
+		&.active
+			background-color: rgba(255, 214, 11, 1)
+	&__part
+		margin-right: 5px
+		&:first-child
+			margin-left: 5px
+	&__name
+		flex-grow: 1
+	&__price
+		color: #55a738 
+	&__comment
+		margin-top: 10px
+		resize: none
+.ver
+	display: none
+
+@media screen and (max-width:400px)
+	.inputs
+		padding: 10px
+	.address__icon
+		margin-right: 10px
+	.more
+		&__menu
+			width: 100vw
+		&__url
+			margin-top: 20px
+	.options__mainPart
+		margin: 7.5px
+
+@media screen and (max-width:350px)
+	.car__choice
+		width: 70px
+	.inputs
+		padding: 10px
+	.options__mainPart
+		margin: 2.5px
