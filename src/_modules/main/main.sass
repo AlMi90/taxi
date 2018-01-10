@@ -4,12 +4,18 @@
 	width: 100vw
 	height: 100vh
 	overflow: hidden
-	&__map
-		position: absolute
-		top: 0
-		left: 0
-		width: 100vw
-		height: 100vh
+
+
+
+.filter-blur
+	filter: blur(15px)
+
+.map
+	position: absolute
+	top: 0
+	left: 0
+	width: 100vw
+	height: 100vh
 
 .inputs
 	position: absolute
@@ -218,9 +224,7 @@
 	left: 0
 	width: 100vw
 	height: 100vh
-	background-color: rgba(gray, .8)
 	z-index: 900
-	filter: blur(80px)
 	&.active
 		display: block
 
@@ -229,15 +233,16 @@
 	z-index: 1000
 	position: absolute
 	top: calc(50% - 250px)
-	left: calc(50% - 250px)
+	left: calc(50% - 350px)
 	list-style-type: none
 	padding: 0
 	margin: 0
 	background-color: #FFF
 	flex-direction: column
-	width: 500px
+	width: 700px
 	overflow: hidden
 	display: none
+	border-radius: 8px
 	&.active
 		display: flex
 	&__head
@@ -253,13 +258,10 @@
 		justify-content: space-between
 		padding: 10px 10px
 		border-bottom: 1px solid rgba(255, 214, 11, 1)
-	&__part-address
-		flex-direction: column
-		align-items: center
-		text-align: center
 	&__options
 		display: none
 	&__button
+		border-radius: 8px
 		font-size: 18px
 		margin: 0 auto
 		width: 300px
@@ -323,7 +325,10 @@
 		left: 0
 		width: 100vw
 		height: 100vh
-
+		border-radius: 0px
+		&__part-address
+			.var__value
+				text-align: right
 @media screen and (max-width:350px)
 	.car__choice
 		width: 70px
