@@ -1,16 +1,17 @@
 form#form.form(action="#")
+	.form__map.map#YMapsID
 	.form__inputs.inputs
 		.inputs__container
 			.inputs__address.address
 				.address__address#whence
-					i.address__icon.fa.fa-map-marker(aria-hidden="true")
+					//- i.address__icon.fa.fa-map-marker(aria-hidden="true")
 					input.address__input.address__input-address(placeholder="Откуда" autocomplete="off")
 					input.address__input.address__input-house.address__input-other(placeholder="Дом" autocomplete="off")
 					input.address__input.address__input-front.address__input-other(placeholder="Пар." autocomplete="off")
 				ul.address__hints.hints
 			.inputs__address.address
 				.address__address#where
-					i.address__icon.fa.fa-map-marker(aria-hidden="true")
+					//- i.address__icon.fa.fa-map-marker(aria-hidden="true")
 					input.address__input.address__input-address(placeholder="Куда" autocomplete="off")
 					input.address__input.address__input-house.address__input-other(placeholder="Дом" autocomplete="off")
 					input.address__input.address__input-front.address__input-other(placeholder="Пар." autocomplete="off")
@@ -84,5 +85,3 @@ form#form.form(action="#")
 			.var__value
 		li.ver__button.ver__button-confirm Подтверждаю
 		li.ver__button.ver__button-cancel Отменить
-
-	.form__map.map#YMapsID

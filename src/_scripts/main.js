@@ -38,7 +38,7 @@ function init() {
 		$($ver).addClass('active');
 		$($layer_map).addClass('filter-blur');
 		$($layer_inputs).addClass('filter-blur');
-		
+
 
 		function getTempAdress( obj ) {
 			temp_full_address = "";
@@ -55,8 +55,8 @@ function init() {
 			return temp_full_address;
 		}
 	}
-	function hideOverlay( obj ) {
-		$( obj ).on('click', function() {
+	function hideOverlay( objOnClick ) {
+		$( objOnClick ).on('click', function() {
 			$($overlay).removeClass('active');
 			$($ver).removeClass('active');
 			$($layer_map).removeClass('filter-blur');
@@ -66,9 +66,6 @@ function init() {
 
 	hideOverlay( $button_cancel );
 	hideOverlay( $overlay );
-
-
-
 
 	// Конец - Формирование формы подтверждения
 
@@ -121,6 +118,7 @@ function init() {
 
 		// Переменная содержащая форму ввода маршрута
 	var	form,
+		map = document.querySelector('#YMapsID'),
 		// Переменная содержащая экземпляр Якарты
 		myMap,
 		// Коллекция геообъектов.
@@ -162,6 +160,8 @@ function init() {
 		$moreOption = $('.more__option'),
 		// Цена итоговая
 		priceTrip;
+
+		console.log(map.offsetHeight);
 
 	// При нажатии на кнопку омментариев и тд.
 	$($moreButton).on('click', function() {
@@ -383,7 +383,6 @@ function init() {
 	// Отображение длинны и времени маршрута
 	function tripData(length, time) {
 		priceTrip = Math.ceil(price_for_km * length) + price_car;
-		console.log(price_for_km*length, price_car);
 /*		$($tripDistans).html('Растояние: ~ ' + length + ' км');
 		$($tripTime).html('В пути: ~ ' + time + ' минут');*/
 		$($tripPrice).html('стоимость ~ ' + priceTrip + ' руб.');
@@ -395,6 +394,8 @@ function init() {
 		zoom: 15,
 		controls: []
 	});
+
+
 
 	// Создаем коллекцию геообъектов(в данном случае маршрутов)
 	// для более удобного редактирования в дальнейшем
@@ -410,6 +411,7 @@ function init() {
 		// Время в пути
 		timeRoute = time;
 	}
+
 	// Показ маршрута на карте
 	function routeingInMap() {
 		// Получаем адреса для маршрута
@@ -419,6 +421,50 @@ function init() {
 		showRoute(routeAddresses, function(length, time) {
 			tripData(length, time);
 			saveDataRoute(length, time);
+			moveMapToRoute()
 		});
 	};
+
+//myMap.setBounds( [ [54.491035, 30.441318] , [54.513323, 30.406858] ], { checkZoomRange : false , zoomMargin : 10 });
+function moveMapToRoute() {
+	var	coords = [];
+
+/*
+	function getCenter( arr ) {
+		var center = [];
+		center[0] = ((arr[0][0] + arr[1][0])/2).toFixed(6);
+		center[1] = ((arr[0][1] + arr[1][1])/2).toFixed(6);
+		return center
+	};
+	function getLengthY( arr ) {
+		return (Math.abs(arr[0][0] - arr[1][0]))*112.5
+	}
+	function getLengthX( arr ) {
+		return (Math.abs(arr[0][1] - arr[1][1]))*65.2
+	}*/
+	function getBounds( arr ) {
+		var bounds = [];
+		if (arr[0][1] < arr[1][1]) {
+			return arr
+		}
+		else {
+			bounds[0] = arr[1];
+			bounds[1] = arr[0];
+			return bounds
+		}
+	}
+	ymaps.geocode(routeAddresses[0]).then(function( obj ) {
+		coords[0] = ( obj.geoObjects._collectionComponent._baseArrayComponent._children[0].geometry._coordinates );
+	})
+	ymaps.geocode(routeAddresses[1]).then(function( obj ) {
+	coords[1] = ( obj.geoObjects._collectionComponent._baseArrayComponent._children[0].geometry._coordinates );
+	}).then(function(){
+		console.log(coords);
+		myMap.setBounds( getBounds( coords ) , {
+			checkZoomRange: false,
+			duration : 1000,
+		})
+	})
+}
+
 }
